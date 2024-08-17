@@ -13,3 +13,10 @@ num_layers = 5 # Number of entire Encoder layer
 x = torch.randn( (batch_size, max_sequence_length, d_model) ) # includes positional encoding
 encoder = Encoder(d_model, ffn_hidden, num_heads, drop_prob, num_layers)
 out = encoder(x)
+
+x = torch.randn( (batch_size, max_sequence_length, d_model) ) # input sentence positional encoded 
+y = torch.randn( (batch_size, max_sequence_length, d_model) ) # output sentence positional encoded 
+mask = torch.full([max_sequence_length, max_sequence_length] , float('-inf'))
+mask = torch.triu(mask, diagonal=1)
+decoder = Decoder(d_model, ffn_hidden, num_heads, drop_prob, num_layers)
+out = decoder(x, y, mask)

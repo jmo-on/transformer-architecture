@@ -14,7 +14,7 @@ class DecoderLayer(nn.Module):
     self.encoder_decoder_attention = MultiHeadCrossAttention(d_model=d_model, num_heads=num_heads)
     self.norm2 = LayerNormalization(parameters_shape=[d_model])
     self.dropout2 = nn.Dropout(p=drop_prob)
-    self.ffn = PositionwiseFeedForward(d_model=d_model, hidden=ffn_hidden, drop_prob=drop_prob)
+    self.ffn = PositionwiseFeedForward(d_model=d_model, ffn_hidden=ffn_hidden, drop_prob=drop_prob)
     self.norm3 = LayerNormalization(parameters_shape=[d_model])
     self.dropout3 = nn.Dropout(p=drop_prob)
 
